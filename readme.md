@@ -1,6 +1,7 @@
 # SOEN343
 
 ## Team Somena - Garage Band
+Original repository available at https://github.com/domludera/SOEN343
 
 ## Objective
 
