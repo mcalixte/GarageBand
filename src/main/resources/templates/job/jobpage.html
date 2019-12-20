@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/viewjob.css}">
+    <title>JobBank</title>
+</head>
+<body onload="getStatusRemoveArchive();jobComplete();" onchange=" jobComplete();">
+<div id="main">
+    <div class="nav-container">
+        <div class="nav-left">
+            <button class="openbtn" onclick="openNav()">☰</button>
+            <div><img th:src="@{/img/car.svg}"></div>
+            <div class="dash-text">Dashboard</div>
+        </div>
+        <div class="nav-right">
+            <div class="garage-text" >GarageBand</div>
+        </div>
+    </div>
+    <div  class= "job-container">
+        <!-- This form is submitted to complete a job. It sends the JOB ID -->
+        <form class="login-form" id='job-form' action='/home/job/completejob' method='POST'>
+            <h1 class="title">Job Vin: <span th:text="${job.vin}">vin</span></span></h1>
+            <div class="box">
+                <label class="login-label"><h2>Details</h2></label>
+                <textarea id="notes" class="form-control" rows="4" readonly style="resize:none; overflow: hidden;" th:text="${job.description}"></textarea>
+            </div>
+            <div class=job-information-container>
+                <div class="manager-information-container">
+                    <h2>Managed By:&nbsp</h2>
+                    <h3>John Doe</h3>
+                </div>
+                <div class="job-state">
+                    <h2>State:&nbsp&nbsp</h2>
+                    <h3 id="status" class="job-task-status"><span th:text="${job.state}">In Progress</span></h3>
+                </div>
+            </div>
+            <br>
+            <div class="task-header">
+                <h2>Job's Tasks</h2>
+            </div>
+            <div class= "task-bank-container">
+                <ul style="list-style-type:none">
+                    <li th:each="task : ${job.tasks}">
+                        <div class="task-container">
+                            <div class="state">
+                            <label class="container">
+                                <input type="checkbox" class="task-checkbox">
+                                <span class="checkmark" name="task"></span>
+                            </label>
+                                <span class="task-bank-task"><h3><span th:text="${task.taskDescription}"></span></h3></span>
+                            </div>
+                            <div class="state">
+                                <span class="status">State:&nbsp</span>
+                                <span class="job-task-status">In Progress</span>
+                                <span>
+                                    <button type="button" class="remove-button" onclick="removeList(this)"><div class="button-text">Remove Task</div></button>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div class="change-job-status">
+                <!-- INSERT JOB ID FROM THYMELEAF IN THE VALUE FIELD BELOW -->
+                <input type="hidden" name="vin" th:value="${job.vin}">
+                <button name='job-complete-button' id="job-complete-button" type="submit" class="default-button"><img th:src="@{/img/check.svg}"><div class="button-text">Submit</div></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="side-bar-nav">
+        <img onclick="growDiv();" th:src="@{/img/cardot.svg}">
+        <a onclick="growDiv();" href="#" class="selected">Job Management</a>
+        <img class="chevron" onclick="growDiv();" th:src="@{/img/downarrow.svg}">
+    </div>
+    <div class="job-management_nav" id="grow">
+        <div>
+            <img th:src="@{/img/creating-job.svg}">
+            <a th:href="@{/home/job/createjob}">Create Job</a>
+        </div>
+        <div class="">
+            <img th:src="@{/img/job-bank.svg}">
+            <a onclick="growJobBank();" href="#">Job Bank</a>
+            <img onclick="growJobBank();" class="job-bank_chevron" th:src="@{/img/downarrow.svg}">
+        </div>
+        <div class="job-management_create-job_taskbank" id="grow_taskbank">
+            <div>
+                <img th:src="@{/img/magnifying.svg}">
+                <a th:href="@{/home/job/jobbank}">Job Bank</a>
+            </div>
+        </div>
+        <div>
+            <img th:src="@{/img/checkout.svg}">
+            <a th:href="@{/home/job/checkout}">Checkout Job</a>
+        </div>
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/archived.svg}">
+        <a th:href="@{/home/job/archivedjobs}">Archived Jobs</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/schedule.svg}">
+        <a href="#">Schedule</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/creating-customer.svg}">
+        <a href="#">Creating Customer</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/logout.svg}" height="24px">
+        <a th:href="@{/logout}">Sign out</a>
+    </div>
+</div>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "350px";
+    document.getElementById("main").style.marginLeft = "350px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+
+  function growDiv() {
+      var growDiv = document.querySelector(".job-management_nav");
+      var chevron = document.querySelector(".chevron");
+      if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+        growDiv.style.height = "144px";
+        chevron.classList.add("selected");
+      } else {
+        growDiv.style.height = "0px";
+        chevron.classList.remove("selected");
+      }
+  }
+
+  function growJobBank(){
+      var growDiv = document.querySelector(".job-management_create-job_taskbank");
+      var growDivParent = document.querySelector(".job-management_nav");
+
+      var chevron = document.querySelector(".job-bank_chevron");
+      if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+        growDiv.style.height = "48px";
+        growDivParent.style.height = "198px";
+        chevron.classList.add("selected");
+      } else {
+        growDiv.style.height = "0px";
+        growDivParent.style.height = "144px";
+        chevron.classList.remove("selected");
+      }
+  }
+
+  function getStatusRemoveArchive(){
+    console.log(document.getElementById('status').innerText)
+    if(document.getElementById('status').innerText === "Archived")
+    {
+      document.getElementById("manage-task-button").disabled = true;
+      document.getElementById("job-complete-button").disabled = true;
+    }
+  }
+  function removeList(e)
+  {
+    e.parentNode.parentNode.parentNode.parentNode.remove();
+  }
+
+  function jobComplete()
+  {
+    var task = document.querySelectorAll(".task-checkbox");
+      for(var i = 0; i<task.length; i++)
+      {
+        if(task[i].checked===true&&document.getElementById('status').innerText !== "Archived")
+        {
+            continue;
+        }
+        else
+        {
+         document.getElementsByName('job-complete-button')[0].disabled = true;
+         return;
+        }
+      }
+      document.getElementsByName('job-complete-button')[0].disabled = false;
+  }
+  </script>
+
+</body>
+</html>

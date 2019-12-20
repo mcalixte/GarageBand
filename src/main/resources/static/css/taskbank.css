@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+html{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.job-container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #212121;
+    height:90vh;
+}
+
+.form-control{
+    border: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #2f2f2f;
+    width: 40vw;
+}
+
+.login-form{
+    margin:30vh;
+    background-color: #292929;
+    border-radius: 5px;
+    margin-top: 25px;
+    height: fit-content;
+    padding-bottom: 30px;;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.login-label{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+h2{
+    font-size: 14px;
+    font-weight: 900; 
+    color: #FFFFFF;
+}
+
+h3{
+    font-size: 14px;
+    font-weight: 400; 
+    color: #FFFFFF
+}
+
+.title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.manager-information-container{
+    display: flex;
+    justify-content: center;
+}
+
+.job-information-container{
+    padding-left: 30px;
+    padding-right:30px;
+    display: flex;
+    justify-content: space-between; 
+}
+.job-state{
+    display: flex;
+    align-items: row;
+}
+.in-progress {
+	color: #F2C94C;
+	opacity: 80%;
+}
+.complete {
+	color: #6FCF97;
+	opacity: 65%;
+}
+.task-header{
+    padding-left: 30px;
+    display: flex;
+    justify-content: left;
+}
+
+.task-container{
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.task-bank-container {
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+	height: 30vh;
+	background-color: #121212;
+	border: 1px solid grey;
+    border-radius: 3px;
+    width: 500px;
+}
+
+li{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	height: 47px;
+	background-color: #212121;
+	border-radius: 5px;
+	margin-top: 5px;
+	width: 99.5%;
+	margin: auto;
+}
+
+.default-button{
+    background-color: #6CBBB3;
+    border: none;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    display: flex;
+    margin-bottom: 20px;
+    margin: right;
+    float: right;
+    align-items: center;
+}
+
+.button-text{
+    font-weight: 500;
+}
+.change-job-status{
+    padding-right: 30px;
+}

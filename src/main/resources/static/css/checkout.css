@@ -1,0 +1,63 @@
+.title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+	font-weight: 500;
+	text-align: center;
+}
+
+.status {
+	color: #FFFFFF;
+	opacity: 80%;
+}
+
+.job-bank_task-status.in-progress {
+	color: #F2C94C;
+	opacity: 80%;
+}
+.job-bank_task-status.pending {
+	color: #FFFFFF;
+	opacity: 65%;
+}
+.job-bank_task-status.finished {
+	color: #6FCF97;
+	opacity: 80%;
+}
+
+.remove-button{
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 25px;
+    display: flex;
+    margin-bottom: 5px;
+    margin: right;
+    float: right;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.job-bank-container{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    text-align: center;
+}
+
+.status-div{
+    display: flex;
+    align-items: center;
+}
+
+#main .content-area .job-bank_container ul li span.job-bank_task-status.finished {
+    color: #28E845;
+    opacity: 80%;
+}
+

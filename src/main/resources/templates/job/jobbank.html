@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/jobbank.css}">
+
+	<title>job bank</title>
+</head>
+<body onload="getStatusButtons(); displayButton();">
+<div id="main">
+	<div class="nav-container">
+		<div class="nav-left">
+			<button class="openbtn" onclick="openNav()">☰</button>
+			<div><img th:src="@{/img/car.svg}"></div>
+			<div class="dash-text">Dashboard</div>
+		</div>
+		<div class="nav-right">
+			<div class="garage-text" >GarageBand</div>
+		</div>
+	</div>
+	<div class="content-area">
+		<h1 class="title">Job Bank</h1>
+		<div class="job-bank_container">
+			<ul id="job-list" >
+				<li class="jobId" th:each="job : ${jobs}">
+					<a style="text-decoration:none; display: flex;" th:href="@{/home/job/} + ${job.vin}">
+						<span><img th:src="@{/img/white-plus.svg}"></span>
+						<span class="job-bank_task" th:text="${job.vin  + ' - ' + job.customer}">vin</span>
+					</a>
+					<div class="status-div">
+						<span class="status">Status: &nbsp</span>
+						<span name="status_job" class="job-bank_task-status " th:text="${job.state}"></span>
+
+						<form action="/home/job/inprogress" method="POST">
+							<input  name="vin"  type="hidden" th:value="${job.vin}">
+							<button  type="submit" class="remove-button" name="previous"><span class="button-text">Previous State</span></button>
+						</form>
+
+						<form  action="/home/job/inprogress" method="POST">
+							<input  name="vin"  type="hidden" th:value="${job.vin}">
+							<button type="submit" class="remove-button" name="next"><span class="button-text">Next State</span></button>
+						</form>
+
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="mySidebar" class="sidebar">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+	<div class="side-bar-nav">
+		<img onclick="growDiv();" th:src="@{/img/cardot.svg}">
+		<a onclick="growDiv();" href="#" class="selected">Job Management</a>
+		<img class="chevron" onclick="growDiv();" th:src="@{/img/downarrow.svg}">
+	</div>
+	<div class="job-management_nav" id="grow">
+		<div>
+			<img th:src="@{/img/creating-job.svg}">
+			<a th:href="@{/home/job/createjob}">Create Job</a>
+		</div>
+		<div class="">
+			<img th:src="@{/img/job-bank.svg}">
+			<a onclick="growJobBank();" href="#">Job Bank</a>
+			<img onclick="growJobBank();" class="job-bank_chevron" th:src="@{/img/downarrow.svg}">
+		</div>
+		<div class="job-management_create-job_taskbank" id="grow_taskbank">
+			<div>
+				<img th:src="@{/img/magnifying.svg}">
+				<a th:href="@{/home/job/jobbank}">Search Job</a>
+			</div>
+		</div>
+		<div>
+			<img th:src="@{/img/checkout.svg}">
+			<a th:href="@{/home/job/checkout}">Checkout Job</a>
+		</div>
+	</div>
+	<div class="side-bar-nav">
+		<img th:src="@{/img/archived.svg}">
+		<a th:href="@{/home/job/archivedjobs}">Archived Jobs</a>
+		<img src="">
+	</div>
+	<div class="side-bar-nav">
+		<img th:src="@{/img/schedule.svg}">
+		<a href="#">Schedule</a>
+		<img src="">
+	</div>
+	<div class="side-bar-nav">
+		<img th:src="@{/img/creating-customer.svg}">
+		<a href="#">Creating Customer</a>
+		<img src="">
+	</div>
+	<div class="side-bar-nav">
+		<img th:src="@{/img/logout.svg}" height="24px">
+		<a th:href="@{/logout}">Sign out</a>
+	</div>
+</div>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "350px";
+  document.getElementById("main").style.marginLeft = "350px";
+}
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+function growDiv() {
+    var growDiv = document.querySelector(".job-management_nav");
+    var chevron = document.querySelector(".chevron");
+    if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+    	growDiv.style.height = "144px";
+    	chevron.classList.add("selected");
+    } else {
+    	growDiv.style.height = "0px";
+    	chevron.classList.remove("selected");
+    }
+}
+function growJobBank(){
+    var growDiv = document.querySelector(".job-management_create-job_taskbank");
+    var growDivParent = document.querySelector(".job-management_nav");
+    var chevron = document.querySelector(".job-bank_chevron");
+    if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+    	growDiv.style.height = "48px";
+    	growDivParent.style.height = "192px";
+    	chevron.classList.add("selected");
+    } else {
+    	growDiv.style.height = "0px";
+    	growDivParent.style.height = "144px";
+    	chevron.classList.remove("selected");
+    }   
+}
+
+function displayButton(){
+	var status =document.getElementsByName('status_job');
+	for(var i = 0; i<status.length; i++)
+	{
+		if(status[i].textContent === "In Progress")
+    		{
+			document.getElementsByName("previous")[i].textContent = "On Hold";
+		    }
+		if(status[i].textContent === "On Hold")
+    		{
+			document.getElementsByName("next")[i].textContent = "In Progress";
+		    }
+		if(status[i].textContent === "Pending Approval")
+    		{
+			document.getElementsByName("previous")[i].textContent = "In Progress";
+			document.getElementsByName("next")[i].textContent= "Complete";
+		    }
+		if(status[i].textContent === "Complete")
+    		{
+			document.getElementsByName("previous")[i].textContent= "In Progress";
+   			 }
+		if(status[i].textContent === "Initial")
+    		{
+    		document.getElementsByName("next")[i].textContent="In Progress";
+   			 }
+	}
+  }
+function getStatusButtons(){
+	var status =document.getElementsByName('status_job');
+	for(var i = 0; i<status.length; i++)
+	{
+		if(status[i].textContent=== "Archived")
+    		{
+    		document.getElementsByName("previous")[i].disabled = true;
+    		document.getElementsByName("next")[i].disabled = true;
+    		}
+		if(status[i].textContent === "InProgress")
+    		{
+			document.getElementsByName("previous")[i].disabled = true;
+		    document.getElementsByName("next")[i].disabled = true;
+		    }
+		if(status[i].textContent === "On Hold")
+    		{
+			document.getElementsByName("previous")[i].disabled = true;
+			document.getElementsByName("next")[i].disabled = false;
+		    }
+		if(status[i].textContent === "Pending Approval")
+    		{
+			document.getElementsByName("previous")[i].disabled = false;
+			document.getElementsByName("next")[i].disabled = false;
+		    }
+		if(status[i].textContent === "Complete")
+    		{
+			document.getElementsByName("previous")[i].disabled = false;
+    		document.getElementsByName("next")[i].disabled = true;
+   			 }
+		if(status[i].textContent === "Initial")
+    		{
+			document.getElementsByName("previous")[i].disabled = true;
+    		document.getElementsByName("next")[i].disabled = false;
+   			 }
+	}
+  }
+</script>
+
+</body>
+</html>

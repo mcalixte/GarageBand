@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<thlogic xmlns:th="http://www.thymeleaf.org">
+    <attr sel="#job-list" th:remove="all-but-first">
+        <attr sel="#li[0]" th:each="job: ${jobs}">
+            <attr sel="li.jobId" th:text="${jobs.id}"/>
+        </attr>
+    </attr>
+</thlogic>

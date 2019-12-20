@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+    <title>Home</title>
+</head>
+<body>
+<div id="main">
+    <div class="nav-container">
+        <div class="nav-left">
+            <button class="openbtn" onclick="openNav()">☰</button>
+            <div><img th:src="@{/img/car.svg}"></div>
+            <div class="dash-text">Dashboard</div>
+        </div>
+        <div class="nav-right">
+            <div class="garage-text" >GarageBand</div>
+        </div>
+    </div>
+    <div class="display">
+    </div>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="side-bar-nav">
+        <img onclick="growDiv();" th:src="@{/img/cardot.svg}">
+        <a onclick="growDiv();" href="#" class="selected">Job Management</a>
+        <img class="chevron" onclick="growDiv();" th:src="@{/img/downarrow.svg}">
+    </div>
+    <div class="job-management_nav" id="grow">
+        <div>
+            <img th:src="@{/img/creating-job.svg}">
+            <a th:href="@{/home/job/createjob}">Create Job</a>
+        </div>
+        <div class="">
+            <img th:src="@{/img/job-bank.svg}">
+            <a onclick="growJobBank();" href="#">Job Bank</a>
+            <img onclick="growJobBank();" class="job-bank_chevron" th:src="@{/img/downarrow.svg}">
+        </div>
+        <div class="job-management_create-job_taskbank" id="grow_taskbank">
+            <div>
+                <img th:src="@{/img/magnifying.svg}">
+                <a th:href="@{/home/job/jobbank}">Job Bank</a>
+            </div>
+        </div>
+        <div>
+            <img th:src="@{/img/checkout.svg}">
+            <a th:href="@{/home/job/checkout}">Checkout Job</a>
+        </div>
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/archived.svg}">
+        <a th:href="@{/home/job/archivedjobs}">Archived Jobs</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/schedule.svg}">
+        <a href="#">Schedule</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/creating-customer.svg}">
+        <a href="#">Creating Customer</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img height="24px" th:src="@{/img/logout.svg}">
+        <a th:href="@{/logout}">Sign out</a>
+    </div>
+</div>
+
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "350px";
+    document.getElementById("main").style.marginLeft = "350px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+
+  function growDiv() {
+      var growDiv = document.querySelector(".job-management_nav");
+      var chevron = document.querySelector(".chevron");
+      if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+        growDiv.style.height = "144px";
+        chevron.classList.add("selected");
+      } else {
+        growDiv.style.height = "0px";
+        chevron.classList.remove("selected");
+      }
+  }
+
+  function growJobBank(){
+      var growDiv = document.querySelector(".job-management_create-job_taskbank");
+      var growDivParent = document.querySelector(".job-management_nav");
+
+      var chevron = document.querySelector(".job-bank_chevron");
+      if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+        growDiv.style.height = "48px";
+        growDivParent.style.height = "198px";
+        chevron.classList.add("selected");
+      } else {
+        growDiv.style.height = "0px";
+        growDivParent.style.height = "144px";
+        chevron.classList.remove("selected");
+      }
+
+  }
+  </script>
+
+</body>
+</html>

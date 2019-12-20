@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/createjob.css}">
+    <title>Create Job</title>
+</head>
+<body>
+<div id="main">
+    <div class="nav-container">
+        <div class="nav-left">
+            <button class="openbtn" onclick="openNav()">☰</button>
+            <div><img th:src="@{/img/car.svg}"></div>
+            <div class="dash-text">Dashboard</div>
+        </div>
+        <div class="nav-right">
+            <div class="garage-text" >GarageBand</div>
+        </div>
+    </div>
+    <div  class= "job-container">
+        <form class="login-form" method="POST" action="/home/job/createjob">
+            <h1 class="title">Create Job</h1>
+            <div class="box">
+                <label class="login-label">Customer</label>
+                <input name="customer" type="name" class="form-control" id="name" placeholder="Name" size = "35" required>
+            </div>
+            <div class="box">
+                <label class="login-label">VIN</label>
+                <input name="vin" type="VIN" class="form-control" id="VIN" placeholder="VIN" size="35" required>
+            </div>
+            <div class="box">
+                <label class="login-label">Notes</label>
+                <textarea name="notes" id="notes" class="form-control" placeholder="" rows="4" style="resize:none; overflow: hidden;" required></textarea>
+            </div>
+            <div class="box">
+                <label class="login-label">Tasks</label>
+                <div class= "task-bank-container">
+                    <ul style="list-style-type:none">
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Oil Change">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Oil Change</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Tire Change">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Tire Change</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Windsheild Repair">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Windsheild Repair</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Filter Change">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Filter Change</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Spark Plug Replacement">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Spark Plug Replacement</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Engine Repair">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Engine Repair</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Muffler Repair">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Muffler Repair</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Fuel Cap Tightening">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Fuel Cap Tightening</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Brake Work">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Brake Work</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Battery Replacement">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Battery Replacement</h3></span>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="task-container">
+                                <div class="task-bank-check">
+                                    <label class="container">
+                                        <input name="task" type="checkbox" class="task-checkbox" value="Ignition Coil Replacement">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="task-bank-task"><h3>Ignition Coil Replacement</h3></span>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" class="default-button"><img th:src="@{/img/black-plus.svg}"><div class="button-text">Create Job</div></button>
+        </form>
+    </div>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="side-bar-nav">
+        <img onclick="growDiv();" th:src="@{/img/cardot.svg}">
+        <a onclick="growDiv();" href="#" class="selected">Job Management</a>
+        <img class="chevron" onclick="growDiv();" th:src="@{/img/downarrow.svg}">
+    </div>
+    <div class="job-management_nav" id="grow">
+        <div>
+            <img th:src="@{/img/creating-job.svg}">
+            <a th:href="@{/home/job/createjob}">Create Job</a>
+        </div>
+        <div class="">
+            <img th:src="@{/img/job-bank.svg}">
+            <a onclick="growJobBank();" href="#">Job Bank</a>
+            <img onclick="growJobBank();" class="job-bank_chevron" th:src="@{/img/downarrow.svg}">
+        </div>
+        <div class="job-management_create-job_taskbank" id="grow_taskbank">
+            <div>
+                <img th:src="@{/img/magnifying.svg}">
+                <a th:href="@{/home/job/jobbank}">Job Bank</a>
+            </div>
+        </div>
+        <div>
+            <img th:src="@{/img/checkout.svg}">
+            <a th:href="@{/home/job/checkout}">Checkout Job</a>
+        </div>
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/archived.svg}">
+        <a th:href="@{/home/job/archivedjobs}">Archived Jobs</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/schedule.svg}">
+        <a href="#">Schedule</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/creating-customer.svg}">
+        <a href="#">Creating Customer</a>
+    
+    </div>
+    <div class="side-bar-nav">
+        <img th:src="@{/img/logout.svg}" height="24px">
+        <a th:href="@{/logout}">Sign out</a>
+    </div>
+</div>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "350px";
+  document.getElementById("main").style.marginLeft = "350px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+function growDiv() {
+    var growDiv = document.querySelector(".job-management_nav");
+    var chevron = document.querySelector(".chevron");
+    if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+      growDiv.style.height = "144px";
+      chevron.classList.add("selected");
+    } else {
+      growDiv.style.height = "0px";
+      chevron.classList.remove("selected");
+    }
+}
+
+function growJobBank(){
+    var growDiv = document.querySelector(".job-management_create-job_taskbank");
+    var growDivParent = document.querySelector(".job-management_nav");
+
+    var chevron = document.querySelector(".job-bank_chevron");
+    if(growDiv.style.height == "" || growDiv.style.height == "0px"){
+      growDiv.style.height = "48px";
+      growDivParent.style.height = "198px";
+      chevron.classList.add("selected");
+    } else {
+      growDiv.style.height = "0px";
+      growDivParent.style.height = "144px";
+      chevron.classList.remove("selected");
+    }
+
+}
+</script>
+
+
+</body>
+</html>

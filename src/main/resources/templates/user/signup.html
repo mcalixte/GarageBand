@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link type="text/css"  th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link type="text/css"  th:href="@{/css/login.css}" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+<div class="nav-container2">
+    <div style= "padding-left: 30px;"><img th:src="@{/img/car.svg}"></div>
+    <div class="dash-text">GarageBand</div>
+</div>
+<div  class= "container">
+        <form th:action="@{/signup}" th:object="${user}" method="post" class="login-form">
+            <h1>Register</h1>
+            <div class="login-label" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            <div class="login-label" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            <div class="employeeID-box">
+                <label class="login-label"> Username: </label>
+                <input class="form-control" placeholder="Choose a Username..." type="text" name="username" size=35/>
+            </div>
+            <div class="password-box">
+                <label class="login-label"> Password: </label>
+                <input class="form-control" placeholder="Select a password..." type="password" name="password" size=35/>
+            </div>
+            <div class='login-dropdown-div'>
+                <label class="login-label">Role:&nbsp</label>
+                    <select class='roles' name="role">
+                        <option value="ADMIN">Admin</option>
+                        <option value="SERVICE">Service</option>
+                        <option value="MECHANIC">Mechanic</option>
+                     </select>
+            </div>
+            <div><button class='default-button' type="submit">Register</button></div>
+            <div class="login-label"> Already have an account? <a class='login-link' th:href="@{/login}">Log in</a></div>
+        </form>
+    </div>
+</body>
+</html>

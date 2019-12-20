@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <link type="text/css"  th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link type="text/css"  th:href="@{/css/login.css}" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="nav-container2">
+        <div style= "padding-left: 30px;"><img th:src="@{/img/car.svg}"></div>
+        <div class="dash-text">GarageBand</div>
+    </div>
+    <div  class= "container">
+        <form  th:action="@{/login}" method="post" class="login-form" >
+            <h1>Login</h1>
+            <div class="login-label" th:if="${msg}" th:utext="${msg}"></div>
+            <div class="employeeID-box">
+                <label class="login-label">Identification</label>
+                <input type="text" name="username" class="form-control" id="employeeID" placeholder="Employee Identification" size = "35" required autofocus>
+            </div>
+            <div class="password-box">
+                <label class="login-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password" size="35" required>
+            </div>
+            <div th:if="${param.error}" class="login-label">
+                Invalid username or password.
+            </div>
+            <div th:if="${param.logout}" class="login-label">
+                You have been logged out.
+            </div>
+            <button type="submit" class="default-button">Login</button>
+            <div class="login-label"> Don't have an account, make one  <a class='register-link' th:href="@{/signup}">here</a></div>
+        </form>
+    </div>
+</body>
+</html>
+
+

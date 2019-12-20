@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+html{
+
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.job-container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #212121;
+}
+
+.login-form{
+    margin:30px;
+    background-color: #292929;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.notes{
+    background-color: 2f2f2f;
+    grid-row: 4;
+}
+
+.form-control{
+    border: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #2f2f2f;
+    color: #FFFFFF;
+}
+
+.login-label{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.default-button{
+    background-color: #6CBBB3;
+    border: none;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    display: flex;
+    margin:auto;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.left-image{
+    padding-right: 60 px;
+}
+
+.button-text{
+    font-weight: 500;
+}
+
+.task-container{
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.task-bank-container {
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+	background-color: #121212;
+	border: 1px solid grey;
+    border-radius: 3px;
+    width: 500px;
+}
+
+li{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	height: 47px;
+	background-color: #212121;
+	border-radius: 5px;
+	margin-top: 5px;
+	width: 99.5%;
+	margin: auto;
+}
+
+.button-text{
+    font-weight: 500;
+}
+.change-job-status{
+    padding-right: 30px;
+}
+.task-bank-check{
+    display: flex;
+    justify-content: row;
+    align-items:center;
+}
+
+.task-bank-task{
+    padding:10px;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: #6CBBB3;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container{
+    height: 10px;
+  }
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
